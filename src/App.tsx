@@ -18,8 +18,8 @@ const color = ([r, g, b]: [number, number, number], opacity: number) => {
 };
 
 const App = () => {
-  const [logQ, setLogQ] = useState(5);
-  const [logP, setLogP] = useState(4);
+  const [logQ, setLogQ] = useState(4);
+  const [logP, setLogP] = useState(3);
   const [_X, setX] = useState(0);
   const Q = 2 ** logQ;
   const P = Math.min(2 ** logP, Q);
