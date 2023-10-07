@@ -28,6 +28,10 @@ body {
   margin: 20px;
 }
 
+input[type="range"] {
+  height: 20px;
+}
+
 rect {
   stroke: lightgray;
   stroke-width: 2;
