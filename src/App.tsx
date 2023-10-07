@@ -91,7 +91,7 @@ const App = () => {
             ))}
           </svg>
           <p>
-            Here, row <Latex latex="s" /> represent the <Latex latex="s" />
+            Here, row <Latex latex="s" /> represents the <Latex latex="s" />
             -th Fourier basis vector
             <Latex
               inline={false}
@@ -130,17 +130,17 @@ const App = () => {
           </svg>
           <p>
             By setting appropriate Fourier coefficients, we can construct any
-            vector in the standard basis.
+            vector we want in the standard basis.
           </p>
           <p>
             For example, for the Fourier basis vectors highlighted on the left,
-            we could pick the coefficients from the corresponding rows in the{" "}
-            <Latex latex="QFT_Q" /> matrix. For other coefficients, we just
+            we could pick their coefficients from the corresponding rows in the{" "}
+            <Latex latex="QFT_Q" /> matrix. For all other coefficients, we just
             leave them as zeros.
           </p>
           <p>
             Here, the <Latex latex="l" />
-            -th highlighted element is what pick as the Fourier coefficient
+            -th highlighted element is what we pick as the Fourier coefficient
             <Latex
               inline={false}
               latex="\displaystyle \hat{f}\left(l\frac{Q}{P}\right) = \omega_Q^{l\frac{Q}{P}x_0}."
@@ -217,7 +217,7 @@ const App = () => {
           </svg>
 
           <p>
-            The vector we constructed, expressed in the standard basis, is
+            Our vector, expressed in the standard basis, is
             <Latex
               inline={false}
               latex="\displaystyle \vert \psi \rangle = \frac{1}{\sqrt{P}} \sum_{l = 0}^{P - 1} \hat{f}\left(l\frac{Q}{P}\right) \left\vert v_{l\frac{Q}{P}} \right\rangle"
