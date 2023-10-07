@@ -19,10 +19,11 @@ const color = ([r, g, b]: [number, number, number], opacity: number) => {
 
 const App = () => {
   const [logQ, setLogQ] = useState(5);
-  const [logP, setLogP] = useState(3);
-  const [X, setX] = useState(0);
+  const [logP, setLogP] = useState(4);
+  const [_X, setX] = useState(0);
   const Q = 2 ** logQ;
-  const P = 2 ** logP;
+  const P = Math.min(2 ** logP, Q);
+  const X = Math.min(_X, P - 1);
 
   return (
     <div>
@@ -53,7 +54,7 @@ const App = () => {
           style={{ width: 200 }}
           type="range"
           min={0}
-          max={Q - 1}
+          max={P - 1}
           value={X}
           onChange={(e) => setX(+e.target.value)}
         />
