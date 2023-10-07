@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "dev": "parcel src/index.html"
+  },
+  "devDependencies": {
+    "@types/katex": "^0.16.3",
+    "parcel": "^2.9.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "@types/mathjax": "^0.0.38",
+    "@types/react": "^18.2.25",
+    "@types/react-dom": "^18.2.11",
+    "katex": "^0.16.9",
+    "mathjax": "^3.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
