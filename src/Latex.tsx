@@ -1,12 +1,28 @@
 import React, { FC, useEffect, useState } from "react";
-import katex from "katex";
+import * as katex from "katex";
 
-const Latex: FC<{ latex: string }> = ({ latex }) => {
+const Latex: FC<{ latex: string; inline?: boolean }> = ({
+  latex,
+  inline = true,
+}) => {
   const [html, setHtml] = useState("");
   useEffect(() => {
-    setHtml(katex.renderToString(html));
+    setHtml(
+      katex.renderToString(latex, {
+        throwOnError: false,
+      })
+    );
   });
-  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+  return (
+    <span
+      dangerouslySetInnerHTML={{ __html: html }}
+      style={{
+        display: inline ? "inline" : "block",
+        textAlign: inline ? "start" : "center",
+        margin: "10px 0px",
+      }}
+    />
+  );
 };
 
-export Latex
+export default Latex;

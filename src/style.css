@@ -1,0 +1,34 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.main > div {
+  width: 400px;
+  position: relative;
+}
+
+#app {
+  margin: 20px;
+}
+
+rect {
+  stroke: lightgray;
+  stroke-width: 2;
+}

@@ -27328,79 +27328,497 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _latex = require("./Latex");
 var _latexDefault = parcelHelpers.interopDefault(_latex);
+var _styleCss = require("./style.css");
 var _s = $RefreshSig$();
 const range = (Q)=>{
     return Array(Q).fill(0).map((_, i)=>i);
 };
+const opacity = (v, start, end, minOpacity = 0.1)=>{
+    return minOpacity + (1 - minOpacity) * (v - start) / (end - start);
+};
+const color = ([r, g, b], opacity)=>{
+    return `rgba(${Math.floor(r * 255)}, ${Math.floor(g * 255)}, ${Math.floor(b * 255)}, ${opacity})`;
+};
 const App = ()=>{
     _s();
-    const [L, setL] = (0, _react.useState)(3);
-    const Q = 2 ** L;
+    const [logQ, setLogQ] = (0, _react.useState)(4);
+    const [logP, setLogP] = (0, _react.useState)(2);
+    const [X, setX] = (0, _react.useState)(0);
+    const Q = 2 ** logQ;
+    const P = 2 ** logP;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _latexDefault.default), {
-                latex: `l = ${L}, Q = ${Q}`
-            }, void 0, false, {
-                fileName: "src/App.tsx",
-                lineNumber: 15,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                type: "range",
-                max: "10",
-                min: "1",
-                value: L,
-                onChange: (e)=>setL(+e.target.value)
-            }, void 0, false, {
-                fileName: "src/App.tsx",
-                lineNumber: 16,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("svg", {
-                viewBox: `0 0 100 100`,
-                children: range(Q).map((x)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("g", {
-                        children: range(Q).map((s)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("rect", {
-                                        x: x * (100 / Q),
-                                        y: s * (100 / Q),
-                                        fill: `rgba(0, 0, 0, ${Math.random()})`
-                                    }, void 0, false, {
-                                        fileName: "src/App.tsx",
-                                        lineNumber: 28,
-                                        columnNumber: 17
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("text", {
-                                        children: [
-                                            x,
-                                            " ",
-                                            s
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "src/App.tsx",
-                                        lineNumber: 33,
-                                        columnNumber: 17
-                                    }, undefined)
-                                ]
-                            }, void 0, true))
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "row",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        style: {
+                            width: 200
+                        },
+                        type: "range",
+                        min: "0",
+                        max: "5",
+                        value: logQ,
+                        onChange: (e)=>setLogQ(+e.target.value)
                     }, void 0, false, {
                         fileName: "src/App.tsx",
-                        lineNumber: 25,
-                        columnNumber: 11
-                    }, undefined))
-            }, void 0, false, {
+                        lineNumber: 30,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _latexDefault.default), {
+                        latex: `Q = ${Q}`
+                    }, void 0, false, {
+                        fileName: "src/App.tsx",
+                        lineNumber: 38,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
                 fileName: "src/App.tsx",
-                lineNumber: 23,
+                lineNumber: 29,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "row",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        style: {
+                            width: 200
+                        },
+                        type: "range",
+                        min: 0,
+                        max: logQ,
+                        value: logP,
+                        onChange: (e)=>setLogP(+e.target.value)
+                    }, void 0, false, {
+                        fileName: "src/App.tsx",
+                        lineNumber: 41,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _latexDefault.default), {
+                        latex: `P = ${P}`
+                    }, void 0, false, {
+                        fileName: "src/App.tsx",
+                        lineNumber: 49,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/App.tsx",
+                lineNumber: 40,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "row",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        style: {
+                            width: 200
+                        },
+                        type: "range",
+                        min: 0,
+                        max: Q - 1,
+                        value: X,
+                        onChange: (e)=>setX(+e.target.value)
+                    }, void 0, false, {
+                        fileName: "src/App.tsx",
+                        lineNumber: 52,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _latexDefault.default), {
+                        latex: `x_0 = ${X}`
+                    }, void 0, false, {
+                        fileName: "src/App.tsx",
+                        lineNumber: 60,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/App.tsx",
+                lineNumber: 51,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "main",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("svg", {
+                                id: "fourier-basis",
+                                viewBox: "0 0 1000 1000",
+                                width: "400",
+                                height: "400",
+                                children: range(Q).map((s)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("g", {
+                                        children: range(Q).map((x)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("g", {
+                                                children: [
+                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("rect", {
+                                                        x: x * (1000 / Q),
+                                                        y: s * (1000 / Q),
+                                                        width: 1000 / Q,
+                                                        height: 1000 / Q,
+                                                        fill: color(s % (Q / P) == 0 ? [
+                                                            1,
+                                                            0,
+                                                            0
+                                                        ] : [
+                                                            0,
+                                                            0,
+                                                            0
+                                                        ], opacity(Math.cos(-(2 * Math.PI * s * x) / Q), -1, 1))
+                                                    }, void 0, false, {
+                                                        fileName: "src/App.tsx",
+                                                        lineNumber: 74,
+                                                        columnNumber: 21
+                                                    }, undefined),
+                                                    "P"
+                                                ]
+                                            }, `${s},${x}`, true, {
+                                                fileName: "src/App.tsx",
+                                                lineNumber: 73,
+                                                columnNumber: 19
+                                            }, undefined))
+                                    }, s, false, {
+                                        fileName: "src/App.tsx",
+                                        lineNumber: 71,
+                                        columnNumber: 15
+                                    }, undefined))
+                            }, void 0, false, {
+                                fileName: "src/App.tsx",
+                                lineNumber: 64,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                children: [
+                                    "Here, row ",
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _latexDefault.default), {
+                                        latex: "s"
+                                    }, void 0, false, {
+                                        fileName: "src/App.tsx",
+                                        lineNumber: 94,
+                                        columnNumber: 23
+                                    }, undefined),
+                                    " represent the ",
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _latexDefault.default), {
+                                        latex: "s"
+                                    }, void 0, false, {
+                                        fileName: "src/App.tsx",
+                                        lineNumber: 94,
+                                        columnNumber: 57
+                                    }, undefined),
+                                    "-th Fourier basis vector",
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _latexDefault.default), {
+                                        inline: false,
+                                        latex: "\\displaystyle \\vert v_s \\rangle = \\frac{1}{\\sqrt{Q}}\\sum_{x = 0}^{Q - 1} \\omega_{Q}^{-sx} \\vert x \\rangle,"
+                                    }, void 0, false, {
+                                        fileName: "src/App.tsx",
+                                        lineNumber: 96,
+                                        columnNumber: 13
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/App.tsx",
+                                lineNumber: 93,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                children: [
+                                    "and the ",
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _latexDefault.default), {
+                                        latex: "l"
+                                    }, void 0, false, {
+                                        fileName: "src/App.tsx",
+                                        lineNumber: 102,
+                                        columnNumber: 21
+                                    }, undefined),
+                                    "-th highlighed row is",
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _latexDefault.default), {
+                                        inline: false,
+                                        latex: "\\displaystyle \\left\\vert v_{l\\frac{Q}{P}} \\right\\rangle = \\frac{1}{\\sqrt{Q}}\\sum_{x = 0}^{Q - 1} \\omega_{Q}^{-l\\frac{Q}{P}x} \\vert x \\rangle,"
+                                    }, void 0, false, {
+                                        fileName: "src/App.tsx",
+                                        lineNumber: 104,
+                                        columnNumber: 13
+                                    }, undefined),
+                                    "where ",
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _latexDefault.default), {
+                                        latex: "0 \\leq l < P"
+                                    }, void 0, false, {
+                                        fileName: "src/App.tsx",
+                                        lineNumber: 108,
+                                        columnNumber: 19
+                                    }, undefined),
+                                    "."
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/App.tsx",
+                                lineNumber: 101,
+                                columnNumber: 11
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/App.tsx",
+                        lineNumber: 63,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("svg", {
+                                id: "qft",
+                                viewBox: "0 0 1000 1000",
+                                width: "400",
+                                height: "400",
+                                children: range(Q).map((s)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("g", {
+                                        children: range(Q).map((x)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("rect", {
+                                                x: x * (1000 / Q),
+                                                y: s * (1000 / Q),
+                                                width: 1000 / Q,
+                                                height: 1000 / Q,
+                                                fill: color(x == X && s % (Q / P) == 0 ? [
+                                                    1,
+                                                    0,
+                                                    0
+                                                ] : [
+                                                    0,
+                                                    0,
+                                                    0
+                                                ], opacity(Math.cos(2 * Math.PI * s * x / Q), -1, 1))
+                                            }, x, false, {
+                                                fileName: "src/App.tsx",
+                                                lineNumber: 116,
+                                                columnNumber: 19
+                                            }, undefined))
+                                    }, s, false, {
+                                        fileName: "src/App.tsx",
+                                        lineNumber: 114,
+                                        columnNumber: 15
+                                    }, undefined))
+                            }, void 0, false, {
+                                fileName: "src/App.tsx",
+                                lineNumber: 112,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                children: "By setting appropriate Fourier coefficients, we can construct any vector in the standard basis."
+                            }, void 0, false, {
+                                fileName: "src/App.tsx",
+                                lineNumber: 131,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                children: [
+                                    "For example, for the Fourier basis vectors highlighted on the left, we could pick the coefficients from the corresponding rows in the",
+                                    " ",
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _latexDefault.default), {
+                                        latex: "QFT_Q"
+                                    }, void 0, false, {
+                                        fileName: "src/App.tsx",
+                                        lineNumber: 138,
+                                        columnNumber: 13
+                                    }, undefined),
+                                    " matrix. For other coefficients, we just leave them as zeros."
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/App.tsx",
+                                lineNumber: 135,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                children: [
+                                    "Here, the ",
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _latexDefault.default), {
+                                        latex: "l"
+                                    }, void 0, false, {
+                                        fileName: "src/App.tsx",
+                                        lineNumber: 142,
+                                        columnNumber: 23
+                                    }, undefined),
+                                    "-th highlighted element is what pick as the Fourier coefficient",
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _latexDefault.default), {
+                                        inline: false,
+                                        latex: "\\displaystyle \\hat{f}\\left(l\\frac{Q}{P}\\right) = \\omega_Q^{l\\frac{Q}{P}x_0}."
+                                    }, void 0, false, {
+                                        fileName: "src/App.tsx",
+                                        lineNumber: 144,
+                                        columnNumber: 13
+                                    }, undefined),
+                                    "."
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/App.tsx",
+                                lineNumber: 141,
+                                columnNumber: 11
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/App.tsx",
+                        lineNumber: 111,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("svg", {
+                                id: "standard",
+                                viewBox: "0 0 1000 100",
+                                width: "400",
+                                height: "40",
+                                style: {
+                                    position: "absolute",
+                                    top: -50,
+                                    width: 400,
+                                    height: 40
+                                },
+                                children: range(Q).map((x)=>{
+                                    let v = 0;
+                                    for(let l = 0; l < P; ++l){
+                                        const s = l * (Q / P);
+                                        v += Math.cos(2 * Math.PI * s * (X - x) / Q);
+                                    }
+                                    v /= Math.sqrt(P);
+                                    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("rect", {
+                                        x: x * (1000 / Q),
+                                        y: 0,
+                                        width: 1000 / Q,
+                                        height: 100,
+                                        fill: color([
+                                            0,
+                                            0,
+                                            1
+                                        ], opacity(v, 0, 1, 0))
+                                    }, x, false, {
+                                        fileName: "src/App.tsx",
+                                        lineNumber: 167,
+                                        columnNumber: 17
+                                    }, undefined);
+                                })
+                            }, void 0, false, {
+                                fileName: "src/App.tsx",
+                                lineNumber: 152,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("svg", {
+                                id: "fourier",
+                                viewBox: "0 0 100 1000",
+                                width: "40",
+                                height: "400",
+                                style: {
+                                    position: "absolute",
+                                    right: -50,
+                                    width: 40,
+                                    height: 400
+                                },
+                                children: range(Q).map((s)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("rect", {
+                                        x: 0,
+                                        y: s * (1000 / Q),
+                                        width: 100,
+                                        height: 1000 / Q,
+                                        fill: color(s % (Q / P) == 0 ? [
+                                            0,
+                                            0,
+                                            1
+                                        ] : [
+                                            1,
+                                            1,
+                                            1
+                                        ], opacity(Math.cos(2 * Math.PI * s * X / Q), -1, 1))
+                                    }, s, false, {
+                                        fileName: "src/App.tsx",
+                                        lineNumber: 186,
+                                        columnNumber: 15
+                                    }, undefined))
+                            }, void 0, false, {
+                                fileName: "src/App.tsx",
+                                lineNumber: 178,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("svg", {
+                                id: "components",
+                                viewBox: "0 0 1000 1000",
+                                width: "400",
+                                height: "400",
+                                children: range(Q).map((s)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("g", {
+                                        children: range(Q).map((x)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("rect", {
+                                                x: x * (1000 / Q),
+                                                y: s * (1000 / Q),
+                                                width: 1000 / Q,
+                                                height: 1000 / Q,
+                                                fill: color(s % (Q / P) == 0 ? [
+                                                    1,
+                                                    0,
+                                                    0
+                                                ] : [
+                                                    1,
+                                                    1,
+                                                    1
+                                                ], opacity(Math.cos(2 * Math.PI * s * (-x + X) / Q), -1, 1))
+                                            }, x, false, {
+                                                fileName: "src/App.tsx",
+                                                lineNumber: 203,
+                                                columnNumber: 19
+                                            }, undefined))
+                                    }, s, false, {
+                                        fileName: "src/App.tsx",
+                                        lineNumber: 201,
+                                        columnNumber: 15
+                                    }, undefined))
+                            }, void 0, false, {
+                                fileName: "src/App.tsx",
+                                lineNumber: 199,
+                                columnNumber: 11
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                children: [
+                                    "The vector we constructed, expressed in the standard basis, is",
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _latexDefault.default), {
+                                        inline: false,
+                                        latex: "\\displaystyle \\vert \\psi \\rangle = \\frac{1}{\\sqrt{P}} \\sum_{l = 0}^{P - 1} \\hat{f}\\left(l\\frac{Q}{P}\\right) \\left\\vert v_{l\\frac{Q}{P}} \\right\\rangle"
+                                    }, void 0, false, {
+                                        fileName: "src/App.tsx",
+                                        lineNumber: 221,
+                                        columnNumber: 13
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _latexDefault.default), {
+                                        inline: false,
+                                        latex: "\\displaystyle= \\frac{1}{\\sqrt{PQ}} \\sum_{x = 0}^{Q - 1} \\left[ \\sum_{l = 0}^{P - 1} \\omega_{Q}^{l\\frac{Q}{P}(x_0 -x)} \\right] \\vert x \\rangle"
+                                    }, void 0, false, {
+                                        fileName: "src/App.tsx",
+                                        lineNumber: 225,
+                                        columnNumber: 13
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _latexDefault.default), {
+                                        inline: false,
+                                        latex: "\\displaystyle= \\sqrt{\\frac{P}{Q}} \\sum_{k = 0}^{\\frac{Q}{P} - 1} \\vert x_0 + kP \\rangle."
+                                    }, void 0, false, {
+                                        fileName: "src/App.tsx",
+                                        lineNumber: 229,
+                                        columnNumber: 13
+                                    }, undefined),
+                                    'Notice how Fourier transform converts translations in the "time domain" (the standard basis) to phase shifts in the "frequency domain" (the Fourier basis).'
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/App.tsx",
+                                lineNumber: 219,
+                                columnNumber: 11
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/App.tsx",
+                        lineNumber: 151,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/App.tsx",
+                lineNumber: 62,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/App.tsx",
-        lineNumber: 14,
+        lineNumber: 28,
         columnNumber: 5
     }, undefined);
 };
-_s(App, "g8tkmzlSL+8+aYY0bs761gDpDkY=");
+_s(App, "t3T0jgPs6Ghvpdai4NCgN+lq7RI=");
 _c = App;
 exports.default = App;
 var _c;
@@ -27411,7 +27829,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Latex":"5bGjZ"}],"5bGjZ":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Latex":"5bGjZ","./style.css":"bhJkM"}],"5bGjZ":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$36a0 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27419,30 +27837,38 @@ $parcel$ReactRefreshHelpers$36a0.prelude(module);
 
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _katex = require("katex");
-var _katexDefault = parcelHelpers.interopDefault(_katex);
 var _s = $RefreshSig$();
-const Latex = ({ latex })=>{
+const Latex = ({ latex, inline = true })=>{
     _s();
     const [html, setHtml] = (0, _react.useState)("");
     (0, _react.useEffect)(()=>{
-        setHtml((0, _katexDefault.default).renderToString(html));
+        setHtml(_katex.renderToString(latex, {
+            throwOnError: false
+        }));
     });
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
         dangerouslySetInnerHTML: {
             __html: html
+        },
+        style: {
+            display: inline ? "inline" : "block",
+            textAlign: inline ? "start" : "center",
+            margin: "10px 0px"
         }
     }, void 0, false, {
         fileName: "src/Latex.tsx",
-        lineNumber: 9,
-        columnNumber: 10
+        lineNumber: 17,
+        columnNumber: 5
     }, undefined);
 };
 _s(Latex, "TgMqydxNsibpjO+BTohp/Jjrufo=");
 _c = Latex;
+exports.default = Latex;
 var _c;
 $RefreshReg$(_c, "Latex");
 
@@ -56529,6 +56955,6 @@ $RefreshReg$(_c, "Latex");
     /******/ }();
 });
 
-},{}]},["dm2Ou","1xC6H","4aBH6"], "4aBH6", "parcelRequire94c2")
+},{}],"bhJkM":[function() {},{}]},["dm2Ou","1xC6H","4aBH6"], "4aBH6", "parcelRequire94c2")
 
 //# sourceMappingURL=index.2d3ace14.js.map
