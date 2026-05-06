@@ -1,4 +1,4 @@
-u# QFT Visualizer
+# QFT Visualizer
 
 **Live demo:** https://galmungral.github.io/qft-viz/
 
