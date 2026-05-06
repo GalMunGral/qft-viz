@@ -1,4 +1,4 @@
-# QFT Visualizer
+# Quantum Fourier Transform
 
 **Live demo:** https://galmungral.github.io/qft-viz/
 
