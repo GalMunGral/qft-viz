@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Latex from "./Latex";
 import "./style.css";
 
+const ACCENT: [number, number, number] = [1, 0.75, 0.3];
+const BASE: [number, number, number] = [0.55, 0.55, 0.55];
+
 const range = (Q: number) => {
   return Array(Q)
     .fill(0)
@@ -78,8 +81,8 @@ const App = () => {
                       width={1000 / Q}
                       height={1000 / Q}
                       fill={color(
-                        s % (Q / P) == 0 ? [1, 0, 0] : [0, 0, 0],
-                        opacity(Math.cos(-(2 * Math.PI * s * x) / Q), -1, 1)
+                        s % (Q / P) == 0 ? ACCENT : BASE,
+                        opacity(Math.cos(-(2 * Math.PI * s * x) / Q), -1, 1, s % (Q / P) == 0 ? 0.4 : 0.15)
                       )}
                     ></rect>
                     P
@@ -121,8 +124,8 @@ const App = () => {
                     width={1000 / Q}
                     height={1000 / Q}
                     fill={color(
-                      x == X && s % (Q / P) == 0 ? [1, 0, 0] : [0, 0, 0],
-                      opacity(Math.cos((2 * Math.PI * s * x) / Q), -1, 1)
+                      x == X && s % (Q / P) == 0 ? ACCENT : BASE,
+                      opacity(Math.cos((2 * Math.PI * s * x) / Q), -1, 1, x == X && s % (Q / P) == 0 ? 0.4 : 0.15)
                     )}
                   ></rect>
                 ))}
@@ -171,7 +174,7 @@ const App = () => {
                   y={0}
                   width={1000 / Q}
                   height={100}
-                  fill={color([0, 0, 1], opacity(v, 0, 1, 0))}
+                  fill={color(ACCENT, opacity(v, 0, 1, 0))}
                 ></rect>
               );
             })}
@@ -191,8 +194,8 @@ const App = () => {
                 width={100}
                 height={1000 / Q}
                 fill={color(
-                  s % (Q / P) == 0 ? [0, 0, 1] : [1, 1, 1],
-                  opacity(Math.cos((2 * Math.PI * s * X) / Q), -1, 1)
+                  s % (Q / P) == 0 ? ACCENT : BASE,
+                  opacity(Math.cos((2 * Math.PI * s * X) / Q), -1, 1, s % (Q / P) == 0 ? 0.4 : 0.15)
                 )}
               ></rect>
             ))}
@@ -208,8 +211,8 @@ const App = () => {
                     width={1000 / Q}
                     height={1000 / Q}
                     fill={color(
-                      s % (Q / P) == 0 ? [1, 0, 0] : [1, 1, 1],
-                      opacity(Math.cos((2 * Math.PI * s * (-x + X)) / Q), -1, 1)
+                      s % (Q / P) == 0 ? ACCENT : BASE,
+                      opacity(Math.cos((2 * Math.PI * s * (-x + X)) / Q), -1, 1, s % (Q / P) == 0 ? 0.4 : 0.15)
                     )}
                   ></rect>
                 ))}

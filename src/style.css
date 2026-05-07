@@ -69,6 +69,11 @@ input[type="range"]::-webkit-slider-thumb {
   color: #ddd;
 }
 
+svg {
+  background: #1c1c1c;
+  border-radius: 4px;
+}
+
 rect {
   stroke: #0f0f0f;
   stroke-width: 1;
