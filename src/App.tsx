@@ -30,38 +30,37 @@ const App = () => {
 
   return (
     <div>
-      <div className="row">
-        <input
-          style={{ width: 200 }}
-          type="range"
-          min="0"
-          max="5"
-          value={logQ}
-          onChange={(e) => setLogQ(+e.target.value)}
-        />
-        <Latex latex={`Q = ${Q}`} />
-      </div>
-      <div className="row">
-        <input
-          style={{ width: 200 }}
-          type="range"
-          min={0}
-          max={logQ}
-          value={logP}
-          onChange={(e) => setLogP(+e.target.value)}
-        />
-        <Latex latex={`P = ${P}`} />
-      </div>
-      <div className="row">
-        <input
-          style={{ width: 200 }}
-          type="range"
-          min={0}
-          max={P - 1}
-          value={X}
-          onChange={(e) => setX(+e.target.value)}
-        />
-        <Latex latex={`x_0 = ${X}`} />
+      <div className="controls">
+        <div className="row">
+          <input
+            type="range"
+            min="0"
+            max="5"
+            value={logQ}
+            onChange={(e) => setLogQ(+e.target.value)}
+          />
+          <Latex latex={`Q = ${Q}`} />
+        </div>
+        <div className="row">
+          <input
+            type="range"
+            min={0}
+            max={logQ}
+            value={logP}
+            onChange={(e) => setLogP(+e.target.value)}
+          />
+          <Latex latex={`P = ${P}`} />
+        </div>
+        <div className="row">
+          <input
+            type="range"
+            min={0}
+            max={P - 1}
+            value={X}
+            onChange={(e) => setX(+e.target.value)}
+          />
+          <Latex latex={`x_0 = ${X}`} />
+        </div>
       </div>
       <div className="main">
         <div>

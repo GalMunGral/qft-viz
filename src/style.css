@@ -20,17 +20,26 @@ body {
   max-width: 1400px;
 }
 
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px 48px;
+  margin-bottom: 32px;
+}
+
 .row {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 12px;
-  margin-bottom: 6px;
 }
 
 .main {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: start;
   gap: 48px;
   margin-top: 32px;
