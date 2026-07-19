@@ -1,6 +1,6 @@
 # Quantum Fourier Transform Visualization
 
-**Live demo:** https://galmungral.github.io/qft-viz/
+**Live demo:** https://hwenchi.github.io/qft-viz/
 
 ## Rhetorical Design
 
